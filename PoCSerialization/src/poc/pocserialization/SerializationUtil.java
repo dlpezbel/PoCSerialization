@@ -2,6 +2,7 @@ package poc.pocserialization;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,10 +13,13 @@ import poc.pocserialization.dto.ServiceDTO;
 
 public class SerializationUtil {
 	
+	private static String FILE_SER_EXTENSION = "ser";
+	private static String DOT = ".";
+	
 
     public static ServiceDTO deserializeFS(String trxID) throws IOException,
             ClassNotFoundException {
-        FileInputStream fis = new FileInputStream("C:\\tmp\\" + trxID + ".ser");
+        FileInputStream fis = new FileInputStream("C:\\tmp\\" + File.separator + trxID + DOT + FILE_SER_EXTENSION);
         BufferedInputStream bis = new BufferedInputStream(fis);
         ObjectInputStream ois = new ObjectInputStream(bis);
         ServiceDTO obj = (ServiceDTO) ois.readObject();

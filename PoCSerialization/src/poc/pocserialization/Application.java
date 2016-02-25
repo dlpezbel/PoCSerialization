@@ -4,6 +4,7 @@
 package poc.pocserialization;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import poc.pocserialization.dto.DetailedServiceDTO;
 import poc.pocserialization.dto.ServiceDTO;
@@ -18,13 +19,13 @@ public class Application {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String trxId = new String("12312-324234-234235-45435");
-		
+		UUID trxId = UUID.randomUUID();
+
 		ServiceDTO detailedDTO_Out = new DetailedServiceDTO();
 		try {
-			SerializationUtil.serializeFS(detailedDTO_Out, trxId);
+			SerializationUtil.serializeFS(detailedDTO_Out, trxId.toString());
 			
-			ServiceDTO detailedDTO_In = (DetailedServiceDTO)SerializationUtil.deserializeFS(trxId);
+			ServiceDTO detailedDTO_In = (DetailedServiceDTO)SerializationUtil.deserializeFS(trxId.toString());
 			
 			detailedDTO_In.toString();
 
